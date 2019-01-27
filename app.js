@@ -5,8 +5,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+var cors = require('cors')
 var Datastore = require('nedb');
 var users = new Datastore({ filename: '../bin/users', autoload: true })
+
 
 
 var indexRouter = require('./routes/index');
@@ -22,16 +24,22 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.post('/register', usersRouter);
+app.post('/families', usersRouter);
 app.get('/users', usersRouter);
-app.get('/user', usersRouter);
+app.get('/user/:id', usersRouter);
 app.post('/login', usersRouter);
 app.get('/logout', usersRouter);
+app.get('/families', usersRouter);
+app.get('/students', usersRouter);
+app.get('/:family/members', usersRouter);
+app.put('/members', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

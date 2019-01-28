@@ -39,7 +39,8 @@ app.get('/logout', usersRouter);
 app.get('/families', usersRouter);
 app.get('/students', usersRouter);
 app.get('/:family/members', usersRouter);
-app.put('/members', usersRouter)
+app.put('/members', usersRouter);
+app.put('/edit-members', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,2 @@
-{"username":"donald","password":"$2a$08$gsb471z20.Uhe/n7qj3Ude0YYryjUh91VyfeEdf.4bqeOlqd0FaK6","_id":"5K2cCHEhOouIbonn"}
-{"username":"Busayo","password":"$2a$08$U9ELUtkxnQ6mw4ehiys/qelAi9eWfAJYUgCrHXYoCBl0IyQGjJ9Hu","_id":"FRz7KR13dQ3vBinz"}
-{"username":"tunde","password":"$2a$08$3wJ8SgOkrWXdsnp8pytIyev2RRhJZNMoR/PnhznLvjf11DxuyD65e","role":"user","_id":"eZBH31T2DKkXU6VI"}
-{"username":"adewumi","password":"$2a$08$xqNRRk6x4cW2c8RCINzgsuBIULwv9X0DaAxJk9/eoimSyTryfTDWO","_id":"ituHZteQ0BgojwvS"}
+{"username":"tunde","password":"tunde","role":"User","_id":"epRLG57e7yueXshE"}
 {"username":"Admin","password":"$2a$08$nFHhkBdtQiiLwTb9JEusU.J/DBIuXWgubQ1BRS4OP8ZEN0CULg1eW","role":"administrator","_id":"zdEPR965oHATk3ro"}

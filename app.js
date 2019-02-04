@@ -41,6 +41,12 @@ app.get('/students', usersRouter);
 app.get('/:family/members', usersRouter);
 app.put('/members', usersRouter);
 app.put('/edit-members', usersRouter);
+app.get('/family/:id', usersRouter);
+app.get('/:family/:name', usersRouter);
+app.delete('/user/:id', usersRouter);
+app.put('/edit-users', usersRouter);
+app.put('/edit-family', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

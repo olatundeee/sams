@@ -21,7 +21,7 @@ router.post('/register', function(req, res) {
   users.insert({
     username: req.body.username,
     password: hashedPassword,
-    role: req.body.role
+    role: 'User'
   }, function(err, user) {
     if(err) {
       return res.status(500).send('Problem during registration');
@@ -103,8 +103,8 @@ router.get('/families', function(req, res) {
 })
 
 router.get('/students', function(req, res) {
-  students.find(req.query, {password: 0}, function(err, families) {
-    res.json(families)
+  students.find(req.query, function(err, students) {
+    res.json(students)
   })
 });
 
@@ -153,6 +153,7 @@ router.put('/members', function(req, res) {
   var family = req.body.family;
   var name = req.body.name;
   var role = req.body.role;
+  var email = req.body.email;
   var address = req.body.address;
   var telno = req.body.telno;
   var image = req.body.image;
@@ -163,22 +164,158 @@ router.put('/members', function(req, res) {
     members:{
       name: name,
       role: role,
+      email: email,
       address: address,
       tel_no: telno,
       image: image
     }
   }
   }, {upsert: true}, function(err, member) {
+
+    if (req.body.role === 'Student') {
+      students.insert({
+        family: family,
+        name: name,
+        role: role,
+        email: email,
+        address: address,
+        tel_no: telno,
+        image: image
+      }, function(err, student) {
+        if(err) {
+          return res.sendStatus(500).send('Problem during member registration');
+        }
+      })
+    }
+
     if(err) {
       return res.sendStatus(500).send('Problem during member registration');
     }
 
-    res.sendStatus(200);
-    console.log(member);
+    res.sendStatus(200).send(member);
   })
 })
 
+router.put('/edit-members', function(req, res) {
+  console.log(req.body);
 
+  families.update({
+    _id: req.body._id,
+    'members.name': req.body.membername
+  }, {
+    $set: {
+      'members' : {
+        'name': req.body.name,
+        'role': req.body.role,
+        'address': req.body.address,
+        'image': req.body.image,
+        'tel_no': req.body.telno
+      }
+    }
+  }, function(err) {
+    if(err) {
+      return res.sendStatus(500).send('Was not able to delete');
+      console.log(err)
+    } else {
+      return res.sendStatus(200);
+    }
+  })
+})
 
+router.get('/family/:id', function(req, res, next) {
+  families.remove({
+    _id: req.params.id
+  }, {}, function(err) {
+    if(err) {
+      return res.sendStatus(500).send('Was not able to delete');
+    } else {
+      return res.sendStatus(200);
+    }
+  })
+})
+
+router.get('/:family/:name', function(req, res, next) {
+  families.update({
+    _id: req.params.family
+  }, {
+    $pull: {
+      'members' : {
+        name: req.params.name
+      }
+    }
+  }, function(err) {
+    
+    students.findOne({
+      name: req.params.name
+    }, function(err, student) {
+      console.log(student);
+
+      if (student) {
+        students.remove({
+          name: student.name,
+          family: student.family
+        }, function(err){
+          if(err) {
+            return res.sendStatus(500).send('Was not able to delete');
+          }
+        })
+      }
+    })
+
+    if(err) {
+      return res.sendStatus(500).send('Was not able to delete');
+    } else {
+      return res.sendStatus(200);
+    }
+  })
+})
+
+router.delete('/user/:id', function(req, res) {
+  users.remove({
+    _id: req.params.id
+  }, {}, function(err) {
+    if(err) {
+      return res.sendStatus(500).send('Was not able to delete');
+    } else {
+      return res.sendStatus(200);
+    }
+  })
+})
+
+router.put('/edit-users', function(req, res) {
+  console.log(req.body);
+  users.update({
+    _id: req.body._id
+  }, {
+    username: req.body.username,
+    password: req.body.password,
+    role: 'User'
+  }, {}, function(err) {
+    if(err) {
+      return res.sendStatus(500);
+    }
+
+    return res.sendStatus(200);
+  })
+})
+
+router.put('/edit-family', function(req, res) {
+  console.log(req.body);
+
+  families.update({
+    _id: req.body._id
+  }, {
+    name: req.body.name,
+    email: req.body.email,
+    tel_no_1: req.body.telephone1,
+    tel_no_2: req.body.telephone2
+  }, {}, function(err){
+    if(err) {
+      return res.sendStatus(500);
+    }
+
+    return res.sendStatus(200);
+  })
+})
 
 module.exports = router;

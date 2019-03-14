@@ -1,2 +1,4 @@
-{"username":"tunde","password":"tunde","role":"User","_id":"epRLG57e7yueXshE"}
-{"username":"Admin","password":"$2a$08$nFHhkBdtQiiLwTb9JEusU.J/DBIuXWgubQ1BRS4OP8ZEN0CULg1eW","role":"administrator","_id":"zdEPR965oHATk3ro"}
+{"username":"adela","password":"$2a$08$u0wWMJWDD7OK8JYjugtyy.92BU2KxJMpBXIoSLrAwQTMAL0LKM4Nu","role":"User","assigned":"true","_id":"0FxZJy2EG2jaBnyv","fullname":"John Doe","email":"example@gmail.com","telephone1":"08130045003","telephone2":"07003458712","session":"52iEoprynWn0Y2Ac","classId":"wq2lfUsrWup8ovRO"}
+{"username":"administrator","password":"$2a$08$sU1TY.PqZDKPaZ9j3R9NUOAVIy9nNjJnPdPwEow/vlh6fA24ZzHy2","role":"administrator","assigned":"false","_id":"3xB5bFc65Icg9Tsb"}
+{"username":"donald","password":"$2a$08$kO2sVOOxH76yauZXXEchKuzTx4wizkaAb3V8bSW54pAObkvWA4Jtm","role":"User","assigned":"true","_id":"ecKPLxtBNsKwYeGQ","fullname":"Donald Aladi","email":"example@gmail.com","telephone1":"08130045003","telephone2":"07003458712","session":"52iEoprynWn0Y2Ac","classId":"jE9l0Bu0XIoZ3DTH"}
+{"username":"tunde","password":"$2a$08$aF6JRlHxO5U/XfKM2FLVAelV62xtpn/iVnXplyveLQvDH9oFZ/.pS","role":"User","assigned":"true","_id":"qk4p8lAiNg2NHg6P","fullname":"Olatunde Oladunni","email":"example@gmail.com","telephone1":"08130045003","telephone2":"07003458712","session":"52iEoprynWn0Y2Ac","classId":"wN85E3hNr24hIwOu"}
